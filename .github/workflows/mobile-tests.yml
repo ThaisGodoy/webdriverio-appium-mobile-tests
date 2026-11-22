@@ -1,0 +1,46 @@
+
+name: Mobile Automation CI
+
+on:
+  push:
+    branches:
+      - main
+      - feature/mobile-automation
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Validate Mobile Automation Project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate JavaScript syntax
+        run: |
+          find test config -name "*.js" -exec node --check {} \;
+          node --check wdio.conf.js
+          node --check wdio.android.conf.js
+          node --check wdio.ios.conf.js
+
+      - name: Check project structure
+        run: |
+          test -f package.json
+          test -f README.md
+          test -d test/specs
+          test -d test/pageobjects
+          test -d test/data
+          echo "Project structure validated successfully!"
