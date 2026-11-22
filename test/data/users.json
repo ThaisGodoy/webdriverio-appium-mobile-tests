@@ -1,0 +1,29 @@
+
+{
+  "validUser": {
+    "email": "teste@qa.com",
+    "password": "12345678"
+  },
+  "invalidUser": {
+    "email": "teste@qa.com",
+    "password": "123"
+  },
+  "emptyUser": {
+    "email": "",
+    "password": ""
+  },
+  "signupUser": {
+    "email": "cadastro@qa.com",
+    "password": "12345678"
+  },
+  "invalidSignup": {
+    "email": "emailinvalido",
+    "password": "123",
+    "confirmPassword": "123"
+  },
+  "mismatchedPasswords": {
+    "email": "teste@qa.com",
+    "password": "12345678",
+    "confirmPassword": "87654321"
+  }
+}
